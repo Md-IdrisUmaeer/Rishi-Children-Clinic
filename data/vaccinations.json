@@ -1,0 +1,17 @@
+{
+  "note": "PLACEHOLDER DATA — vaccine names below are generic stand-ins ('Vaccine A', 'Vaccine B', ...). Replace with the clinic's actual immunization schedule before this section goes live.",
+  "schedule": [
+    { "id": "birth", "label": "At Birth", "vaccines": ["Vaccine A", "Vaccine B", "Vaccine C"] },
+    { "id": "6w", "label": "6 Weeks", "vaccines": ["Vaccine D (Dose 1)", "Vaccine E (Dose 1)", "Vaccine F (Dose 1)"] },
+    { "id": "10w", "label": "10 Weeks", "vaccines": ["Vaccine D (Dose 2)", "Vaccine E (Dose 2)"] },
+    { "id": "14w", "label": "14 Weeks", "vaccines": ["Vaccine D (Dose 3)", "Vaccine E (Dose 3)", "Vaccine G (Dose 1)"] },
+    { "id": "6m", "label": "6 Months", "vaccines": ["Vaccine H (Dose 1)"] },
+    { "id": "9m", "label": "9 Months", "vaccines": ["Vaccine I (Dose 1)"] },
+    { "id": "12m", "label": "12 Months", "vaccines": ["Vaccine J"] },
+    { "id": "15m", "label": "15 Months", "vaccines": ["Vaccine I (Booster)", "Vaccine K"] },
+    { "id": "18m", "label": "18 Months", "vaccines": ["Vaccine D (Booster 1)", "Vaccine G (Booster 1)"] },
+    { "id": "2y", "label": "2 Years", "vaccines": ["Vaccine L"] },
+    { "id": "4-6y", "label": "4-6 Years", "vaccines": ["Vaccine D (Booster 2)", "Vaccine M"] },
+    { "id": "10-12y", "label": "10-12 Years", "vaccines": ["Vaccine N"] }
+  ]
+}

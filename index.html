@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishi Children's Clinic</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Configuration (Soft Pink / Lavender / Baby Blue Palette) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#FBC7DE',
+                            babypink: '#FDE2ED',
+                            blush: '#F6A8C9',
+                            lavender: '#E3D6F5',
+                            lavenderDeep: '#C6A8E8',
+                            blue: '#C9E4F6',
+                            blueDeep: '#9FCBEC',
+                            text: '#5B4B66',
+                            textSoft: '#8A7897'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Quicksand', 'Fredoka', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Chart.js (for growth percentile charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(160deg, #FDE2ED 0%, #F3E4F8 45%, #DCEBFA 100%);
+            background-attachment: fixed;
+        }
+
+        /* Smooth blended fade + rise transition for SPA section switches */
+        .page-section {
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            opacity: 0;
+            transform: translateY(14px);
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .page-section.active {
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .section-stage {
+            position: relative;
+            min-height: 420px;
+        }
+
+        .nav-btn.active-nav {
+            color: #fff;
+            background: linear-gradient(135deg, #F4A6C6, #C6A8E8);
+            box-shadow: 0 6px 18px -4px rgba(198, 168, 232, 0.55);
+        }
+
+        .side-arrow {
+            backdrop-filter: blur(6px);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .side-arrow:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px -4px rgba(198, 168, 232, 0.6);
+        }
+
+        .img-placeholder {
+            background: repeating-linear-gradient(45deg, #F6E9F2, #F6E9F2 10px, #F0E1F5 10px, #F0E1F5 20px);
+        }
+
+        .copy-toast {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="text-brand-text font-sans flex flex-col min-h-screen">
+
+    <!-- ========================================== -->
+    <!-- FIXED ZONE 1: LOGO ROW + NAVBAR             -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm">
+        <!-- Logo + Name (top-left). Rest of this row intentionally empty. -->
+        <div class="container mx-auto px-4 pt-4 pb-2 flex items-center">
+            <a href="#" class="flex items-center gap-3">
+                <img src="logo.png" alt="Rishi Children's Clinic Logo"
+                    class="w-14 h-14 object-contain rounded-full bg-white shadow-sm"
+                    onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'w-14 h-14 rounded-full bg-brand-pink flex items-center justify-center text-white text-2xl shadow-sm', innerHTML:'<i class=\'fa-solid fa-baby-carriage\'></i>'}))">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-brand-text leading-tight">Rishi Children's Clinic</h1>
+                    <p class="text-[11px] text-brand-textSoft tracking-wide font-semibold">CARE FOR MOTHER & CHILD</p>
+                </div>
+            </a>
+            <!-- Remaining header space left empty on purpose -->
+        </div>
+
+        <!-- Centered Navbar -->
+        <nav class="flex items-center justify-center gap-2 md:gap-4 pb-4">
+            <button data-target="home"
+                class="nav-btn active-nav px-5 py-2 rounded-full font-semibold text-sm md:text-base transition-all">
+                Home
+            </button>
+            <button data-target="childcare"
+                class="nav-btn px-5 py-2 rounded-full font-semibold text-sm md:text-base text-brand-text/70 hover:bg-brand-babypink transition-all">
+                Child Care
+            </button>
+            <button data-target="mothercare"
+                class="nav-btn px-5 py-2 rounded-full font-semibold text-sm md:text-base text-brand-text/70 hover:bg-brand-babypink transition-all">
+                Mother Care
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- SIDE NAVIGATION ARROWS                      -->
+    <!-- ========================================== -->
+    <button id="prevArrow" aria-label="Previous section"
+        class="side-arrow fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/80 text-brand-lavenderDeep shadow-md flex items-center justify-center text-xl hover:text-white">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button id="nextArrow" aria-label="Next section"
+        class="side-arrow fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/80 text-brand-lavenderDeep shadow-md flex items-center justify-center text-xl hover:text-white">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- ========================================== -->
+    <!-- DYNAMIC ZONE: CONTENT CHANGES BY CATEGORY   -->
+    <!-- ========================================== -->
+    <main class="flex-grow container mx-auto px-4 py-10 md:px-16">
+        <div class="section-stage">
+
+            <!-- HOME -->
+            <section id="home" class="page-section active">
+                <div
+                    class="bg-gradient-to-br from-brand-pink via-brand-lavender to-brand-blue rounded-3xl p-8 md:p-14 text-brand-text shadow-xl flex flex-col md:flex-row items-center justify-between overflow-hidden">
+                    <div class="md:w-1/2 space-y-4">
+                        <span
+                            class="bg-white/50 text-brand-text text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Gentle & Caring
+                        </span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">A Warm Place for Mothers &
+                            Children</h2>
+                        <p class="text-brand-text/80 text-base md:text-lg">Compassionate care that grows with your
+                            family — from your very first checkup together to every little milestone after.</p>
+                    </div>
+                    <div class="md:w-1/3 mt-8 md:mt-0 flex justify-center">
+                        <div
+                            class="w-52 h-52 md:w-64 md:h-64 bg-white/40 rounded-full flex items-center justify-center border-4 border-white/50">
+                            <i class="fa-solid fa-hand-holding-heart text-8xl md:text-9xl text-white/90"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CHILD CARE -->
+            <section id="childcare" class="page-section hidden">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-blueDeep">For Your Little
+                        One</span>
+                    <h2 class="text-3xl font-bold text-brand-text">Child Care Services</h2>
+                    <p class="text-brand-textSoft">Nurturing checkups and treatments designed just for growing children.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-babypink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-baby"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Newborn & Infant Care</h3>
+                        <p class="text-brand-textSoft text-sm">Routine wellness checkups, growth monitoring, and
+                            feeding guidance.</p>
+                    </div>
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-blue text-brand-blueDeep rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Vaccinations</h3>
+                        <p class="text-brand-textSoft text-sm">Complete immunization programs following safe pediatric
+                            guidelines.</p>
+                    </div>
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-lavender text-brand-lavenderDeep rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-user-nurse"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Urgent Sick Visits</h3>
+                        <p class="text-brand-textSoft text-sm">Same-day appointments for fevers, coughs, and minor
+                            injuries.</p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- CHILD GROWTH CALCULATOR         -->
+                <!-- ============================== -->
+                <div id="growth-calculator"
+                    class="bg-white/80 rounded-2xl shadow-md border border-white p-6 md:p-8 mt-10">
+                    <div class="text-center mb-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-blueDeep">Track Their
+                            Progress</span>
+                        <h3 class="text-2xl font-bold text-brand-text">Child Growth Calculator</h3>
+                        <p class="text-brand-textSoft text-sm max-w-lg mx-auto">See where your child's height, weight,
+                            and BMI fall on the standard WHO (0-5 yrs) / IAP (5-18 yrs) growth charts.</p>
+                    </div>
+
+                    <form id="growthForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                        <div>
+                            <label class="block text-sm font-semibold text-brand-text mb-1" for="gcDob">Date of
+                                birth</label>
+                            <input type="date" id="gcDob" required
+                                class="w-full rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-brand-text mb-1" for="gcSex">Sex</label>
+                            <select id="gcSex" required
+                                class="w-full rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                                <option value="" disabled selected>Select</option>
+                                <option value="boys">Boy</option>
+                                <option value="girls">Girl</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-brand-text mb-1" for="gcHeight">Height
+                                (cm)</label>
+                            <input type="number" step="0.1" min="30" max="200" id="gcHeight" required
+                                placeholder="e.g. 95.5"
+                                class="w-full rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-brand-text mb-1" for="gcWeight">Weight
+                                (kg)</label>
+                            <input type="number" step="0.1" min="1" max="150" id="gcWeight" required
+                                placeholder="e.g. 14.2"
+                                class="w-full rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold text-brand-text mb-1" for="gcDate">Measurement
+                                date</label>
+                            <input type="date" id="gcDate"
+                                class="w-full rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                        </div>
+                        <div class="sm:col-span-2 text-center pt-1">
+                            <button type="submit"
+                                class="bg-gradient-to-r from-brand-blush to-brand-lavenderDeep text-white font-semibold px-8 py-2.5 rounded-full shadow hover:shadow-lg transition-all text-sm">
+                                Calculate Percentiles
+                            </button>
+                        </div>
+                        <p id="gcError" class="hidden sm:col-span-2 text-center text-xs text-red-500"></p>
+                    </form>
+
+                    <div id="growthResults" class="hidden mt-8">
+                        <div id="gcSummary"
+                            class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-center mb-6">
+                            <!-- Filled by JS: weight / height / bmi result cards -->
+                        </div>
+
+                        <div class="max-w-2xl mx-auto">
+                            <div class="flex items-center justify-center gap-2 mb-3">
+                                <label for="growthChartMetric" class="text-xs font-semibold text-brand-textSoft">Show
+                                    chart for:</label>
+                                <select id="growthChartMetric"
+                                    class="rounded-full border border-brand-lavender px-3 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                                    <option value="weight">Weight-for-age</option>
+                                    <option value="height">Height-for-age</option>
+                                    <option value="bmi">BMI-for-age</option>
+                                </select>
+                            </div>
+                            <div class="bg-white rounded-2xl p-4 shadow-inner">
+                                <canvas id="growthChart" height="260"></canvas>
+                            </div>
+                        </div>
+
+                        <div
+                            class="max-w-xl mx-auto mt-6 bg-brand-babypink/60 border border-brand-pink rounded-2xl p-4 text-sm text-brand-text text-center">
+                            <i class="fa-solid fa-circle-info mr-1 text-brand-blush"></i>
+                            This tool gives a general reference only and is not a medical diagnosis. Every child
+                            grows differently — for a proper interpretation of these numbers, please
+                            <button id="gcBookAppt" type="button"
+                                class="underline font-semibold text-brand-blush hover:text-brand-lavenderDeep">book
+                                an appointment</button>
+                            with Dr. Rajkali R.
+                        </div>
+                        <p id="gcApproxNote"
+                            class="hidden max-w-xl mx-auto mt-3 text-xs text-brand-textSoft text-center italic">
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ============================== -->
+                <!-- VACCINATION GUIDE               -->
+                <!-- ============================== -->
+                <div id="vaccination" class="bg-white/80 rounded-2xl shadow-md border border-white p-6 md:p-8 mt-10">
+                    <div class="text-center mb-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-blush">Stay
+                            Protected</span>
+                        <h3 class="text-2xl font-bold text-brand-text">Know What Vaccines Your Kid Needs</h3>
+                        <p class="text-brand-textSoft text-sm max-w-lg mx-auto">Select your child's age below to see
+                            the recommended vaccines.</p>
+                    </div>
+
+                    <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                        <select id="vaxAgeSelect"
+                            class="flex-grow rounded-xl border border-brand-lavender px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-lavenderDeep">
+                            <option value="" disabled selected>Select child's age</option>
+                        </select>
+                        <button id="vaxSearchBtn" type="button"
+                            class="bg-gradient-to-r from-brand-blue to-brand-lavenderDeep text-white font-semibold px-6 py-2.5 rounded-full shadow hover:shadow-lg transition-all text-sm">
+                            Search
+                        </button>
+                    </div>
+
+                    <div id="vaxResults" class="hidden mt-6 max-w-md mx-auto">
+                        <ul id="vaxList" class="space-y-2"></ul>
+                    </div>
+                    <p class="text-center text-[11px] text-brand-textSoft mt-4 italic">Placeholder schedule — final
+                        vaccine list to be confirmed by the clinic.</p>
+                </div>
+            </section>
+
+            <!-- MOTHER CARE -->
+            <section id="mothercare" class="page-section hidden">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-blush">For You, Mama</span>
+                    <h2 class="text-3xl font-bold text-brand-text">Mother Care Services</h2>
+                    <p class="text-brand-textSoft">Supportive care through pregnancy, delivery, and beyond.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-babypink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Prenatal Checkups</h3>
+                        <p class="text-brand-textSoft text-sm">Regular monitoring to keep you and your baby healthy
+                            through every trimester.</p>
+                    </div>
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-lavender text-brand-lavenderDeep rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-baby-carriage"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Postnatal Support</h3>
+                        <p class="text-brand-textSoft text-sm">Recovery care and guidance for new mothers after
+                            delivery.</p>
+                    </div>
+                    <div
+                        class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
+                        <div
+                            class="w-12 h-12 bg-brand-blue text-brand-blueDeep rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Lactation & Wellness</h3>
+                        <p class="text-brand-textSoft text-sm">One-on-one guidance for feeding, nutrition, and
+                            emotional wellbeing.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+
+    <!-- ========================================== -->
+    <!-- FIXED ZONE 2: DOCTORS SECTION (2 DOCTORS)   -->
+    <!-- ========================================== -->
+    <section id="appointment" class="bg-white/50 backdrop-blur-sm py-12 border-t border-b border-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-lavenderDeep">Our Doctors</span>
+                <h2 class="text-3xl font-bold text-brand-text">Meet Our Specialists</h2>
+                <p class="text-brand-textSoft">Dedicated professionals caring for you and your child.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- Doctor Card 1 (placeholder) -->
+                <div class="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all">
+                    <div
+                        class="img-placeholder w-28 h-28 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-brand-textSoft border-4 border-white shadow">
+                        <img src="https://ispghan.org/wp-content/uploads/2026/01/rajkali.jpg">
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-text">Dr. Rajkali R</h3>
+                    <p class="text-brand-blush text-sm font-semibold mb-2">[Specialization]</p>
+                    <p class="text-brand-textSoft text-xs">[Short bio / experience goes here]</p>
+                </div>
+
+                <!-- Doctor Card 2 (placeholder) -->
+                <div class="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all">
+                    <div
+                        class="img-placeholder w-28 h-28 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-brand-textSoft border-4 border-white shadow">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-text">[Doctor Name]</h3>
+                    <p class="text-brand-lavenderDeep text-sm font-semibold mb-2">[Specialization]</p>
+                    <p class="text-brand-textSoft text-xs">[Short bio / experience goes here]</p>
+                </div>
+            </div>
+
+            <!-- Appointment line -->
+            <div class="text-center mt-8 relative">
+                <p class="text-brand-text font-semibold">
+                    For appointments call:
+                    <span id="phoneNumber" data-phone="1234567890"
+                        class="underline decoration-2 decoration-brand-blush underline-offset-4 font-bold cursor-pointer hover:text-brand-blush transition-colors">
+                        (123) 456-7890
+                    </span>
+                </p>
+                <span id="copyToast"
+                    class="copy-toast opacity-0 pointer-events-none absolute left-1/2 -translate-x-1/2 -bottom-8 bg-brand-text text-white text-xs px-3 py-1 rounded-full shadow">
+                    Copied to clipboard!
+                </span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                      -->
+    <!-- ========================================== -->
+    <footer class="text-center py-6 text-brand-textSoft text-xs">
+        &copy; 2026 Rishi Children's Clinic. All Rights Reserved.
+    </footer>
+
+    <!-- JS Logic Scripts -->
+    <script src="script.js"></script>
+    <script src="growth-calculator.js"></script>
+    <script src="vaccination.js"></script>
+</body>
+
+</html>
