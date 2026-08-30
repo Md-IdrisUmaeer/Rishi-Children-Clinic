@@ -35,9 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const METRIC_LABEL = { weight: 'Weight', height: 'Height', bmi: 'BMI' };
 
-    // Standard-normal Z values for the classic clinical percentile lines
+    // Standard-normal Z values for the classic clinical percentile lines (IAP charts, 5-18 yrs)
     const WHO_LINE_PERCENTILES = [3, 15, 50, 85, 97];
     const WHO_LINE_Z = { 3: -1.8808, 15: -1.0364, 50: 0, 85: 1.0364, 97: 1.8808 };
+
+    // WHO growth charts (0-5 yrs) are read clinically as SD (Z-score) lines, not percentiles
+    const WHO_SD_LEVELS = [-3, -2, -1, 0, 1, 2, 3];
+    const WHO_SD_LABEL = { '-3': '-3 SD', '-2': '-2 SD', '-1': '-1 SD', '0': 'Median', '1': '+1 SD', '2': '+2 SD', '3': '+3 SD' };
 
     const dataCache = {};
     let chartInstance = null;
@@ -196,23 +200,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const ageMax = Math.min(60, childAgeMonths + 24);
         const step = 1;
         const labels = [];
-        const seriesByPercentile = {};
-        WHO_LINE_PERCENTILES.forEach(p => seriesByPercentile[p] = []);
+        const seriesBySd = {};
+        WHO_SD_LEVELS.forEach(sd => seriesBySd[sd] = []);
 
         for (let age = Math.max(0, Math.floor(ageMin)); age <= Math.min(60, Math.ceil(ageMax)); age += step) {
             const row = interpolateLMS(rows, age);
             labels.push(age);
-            WHO_LINE_PERCENTILES.forEach(p => {
-                seriesByPercentile[p].push(lmsValueAtZ(WHO_LINE_Z[p], row.L, row.M, row.S));
+            WHO_SD_LEVELS.forEach(sd => {
+                seriesBySd[sd].push(lmsValueAtZ(sd, row.L, row.M, row.S));
             });
         }
 
-        const datasets = WHO_LINE_PERCENTILES.map(p => ({
-            label: p + 'th percentile',
-            data: seriesByPercentile[p],
-            borderColor: p === 50 ? '#C6A8E8' : '#9FCBEC',
-            borderWidth: p === 50 ? 2.5 : 1.5,
-            borderDash: p === 50 ? [] : [4, 3],
+        const datasets = WHO_SD_LEVELS.map(sd => ({
+            label: WHO_SD_LABEL[sd],
+            data: seriesBySd[sd],
+            borderColor: sd === 0 ? '#C6A8E8' : '#9FCBEC',
+            borderWidth: sd === 0 ? 2.5 : 1.5,
+            borderDash: sd === 0 ? [] : [4, 3],
             pointRadius: 0,
             tension: 0.3
         }));
@@ -220,10 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
         datasets.push({
             label: 'Your child',
             data: labels.map(age => age === Math.round(childAgeMonths) ? childValue : null),
-            borderColor: '#F4A6C6',
-            backgroundColor: '#F4A6C6',
-            pointRadius: labels.map(age => age === Math.round(childAgeMonths) ? 7 : 0),
-            pointHoverRadius: 8,
+            borderColor: '#fff',
+            backgroundColor: '#F4426E',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 1.5,
+            pointRadius: labels.map(age => age === Math.round(childAgeMonths) ? 4 : 0),
+            pointHoverRadius: 6,
             showLine: false,
             type: 'scatter'
         });
@@ -258,10 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
         datasets.push({
             label: 'Your child',
             data: labels.map((age, i) => i === nearestAgeIdx ? childValue : null),
-            borderColor: '#F4A6C6',
-            backgroundColor: '#F4A6C6',
-            pointRadius: labels.map((age, i) => i === nearestAgeIdx ? 7 : 0),
-            pointHoverRadius: 8,
+            borderColor: '#fff',
+            backgroundColor: '#F4426E',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 1.5,
+            pointRadius: labels.map((age, i) => i === nearestAgeIdx ? 4 : 0),
+            pointHoverRadius: 6,
             showLine: false,
             type: 'scatter'
         });
@@ -290,9 +298,15 @@ document.addEventListener('DOMContentLoaded', () => {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                devicePixelRatio: Math.max(2, window.devicePixelRatio || 1),
                 plugins: {
                     legend: { display: true, labels: { font: { size: 10 }, color: '#8A7897' } },
-                    title: { display: true, text: METRIC_LABEL[metric] + '-for-age', color: '#5B4B66', font: { size: 13, weight: 'bold' } }
+                    title: {
+                        display: true,
+                        text: METRIC_LABEL[metric] + '-for-age' + (lastResults.standard === 'who' ? ' (WHO SD chart)' : ' (IAP percentile chart)'),
+                        color: '#5B4B66',
+                        font: { size: 13, weight: 'bold' }
+                    }
                 },
                 scales: {
                     x: { title: { display: true, text: chartData.xLabel, color: '#8A7897', font: { size: 10 } } },
@@ -300,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-        document.getElementById('growthChart').parentElement.style.height = '300px';
+        document.getElementById('growthChart').parentElement.style.height = '360px';
     }
 
     metricSelect.addEventListener('change', () => renderChart(metricSelect.value));

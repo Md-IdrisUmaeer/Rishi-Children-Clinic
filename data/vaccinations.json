@@ -1,17 +1,21 @@
 {
-  "note": "PLACEHOLDER DATA — vaccine names below are generic stand-ins ('Vaccine A', 'Vaccine B', ...). Replace with the clinic's actual immunization schedule before this section goes live.",
   "schedule": [
-    { "id": "birth", "label": "At Birth", "vaccines": ["Vaccine A", "Vaccine B", "Vaccine C"] },
-    { "id": "6w", "label": "6 Weeks", "vaccines": ["Vaccine D (Dose 1)", "Vaccine E (Dose 1)", "Vaccine F (Dose 1)"] },
-    { "id": "10w", "label": "10 Weeks", "vaccines": ["Vaccine D (Dose 2)", "Vaccine E (Dose 2)"] },
-    { "id": "14w", "label": "14 Weeks", "vaccines": ["Vaccine D (Dose 3)", "Vaccine E (Dose 3)", "Vaccine G (Dose 1)"] },
-    { "id": "6m", "label": "6 Months", "vaccines": ["Vaccine H (Dose 1)"] },
-    { "id": "9m", "label": "9 Months", "vaccines": ["Vaccine I (Dose 1)"] },
-    { "id": "12m", "label": "12 Months", "vaccines": ["Vaccine J"] },
-    { "id": "15m", "label": "15 Months", "vaccines": ["Vaccine I (Booster)", "Vaccine K"] },
-    { "id": "18m", "label": "18 Months", "vaccines": ["Vaccine D (Booster 1)", "Vaccine G (Booster 1)"] },
-    { "id": "2y", "label": "2 Years", "vaccines": ["Vaccine L"] },
-    { "id": "4-6y", "label": "4-6 Years", "vaccines": ["Vaccine D (Booster 2)", "Vaccine M"] },
-    { "id": "10-12y", "label": "10-12 Years", "vaccines": ["Vaccine N"] }
+    { "id": "birth", "label": "Birth", "vaccines": ["BCG", "OPV 0", "Hepatitis B-1"] },
+    { "id": "6w", "label": "6 Weeks", "vaccines": ["DPT/DTaP-1", "IPV-1", "Hib-1", "Hep B-2", "Rotavirus-1", "PCV-1"] },
+    { "id": "10w", "label": "10 Weeks", "vaccines": ["DPT/DTaP-2", "IPV-2", "Hib-2", "Hep B-3", "Rotavirus-2", "PCV-2"] },
+    { "id": "14w", "label": "14 Weeks", "vaccines": ["DPT/DTaP-3", "IPV-3", "Hib-3", "Hep B-4", "Rotavirus-3", "PCV-3"] },
+    { "id": "6m", "label": "6 Months", "vaccines": ["Influenza-1"] },
+    { "id": "7m", "label": "7 Months", "vaccines": ["Influenza-2"] },
+    { "id": "6-9m", "label": "6-9 Months", "vaccines": ["Typhoid conjugate vaccine"] },
+    { "id": "9m", "label": "9 Months", "vaccines": ["MMR-1"] },
+    { "id": "12m", "label": "12 Months", "vaccines": ["Hep A-1"] },
+    { "id": "15m", "label": "15 Months", "vaccines": ["MMR-2", "Varicella-1", "PCV-Booster"] },
+    { "id": "16-18m", "label": "16-18 Months", "vaccines": ["DPT/DTaP-B1", "Hib-B1", "IPV-B1"] },
+    { "id": "18-19m", "label": "18-19 Months", "vaccines": ["Hepatitis A-2", "Varicella-2"] },
+    { "id": "4-6y", "label": "4-6 Years", "vaccines": ["DPT/DTaP-B2", "IPV-B2", "MMR-3"] },
+    { "id": "9-14y", "label": "9-14 Years", "vaccines": ["HPV — 2 doses (0, 6 mo)"] },
+    { "id": "10y", "label": "10 Years", "vaccines": ["Tdap"] },
+    { "id": "15-18y", "label": "15-18 Years", "vaccines": ["HPV — 3 doses (if not given earlier)"] },
+    { "id": "16-18y", "label": "16-18 Years", "vaccines": ["Td"] }
   ]
 }

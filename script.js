@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Ordered list of dynamic categories (drives nav buttons + arrow navigation)
-    const categories = ['home', 'childcare', 'mothercare'];
+    const categories = ['home', 'services', 'growth', 'development'];
 
     const navButtons = document.querySelectorAll('.nav-btn');
     const sections = document.querySelectorAll('.page-section');
