@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fineList = document.getElementById('devFineMotorList');
 
     let milestoneData = null;
+    let sortedAges = []; // numeric ages, ascending
 
     function formatAgeLabel(months) {
         const n = Number(months);
@@ -20,14 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => {
             milestoneData = data;
-            Object.keys(data)
-                .sort((a, b) => Number(a) - Number(b))
-                .forEach(age => {
-                    const opt = document.createElement('option');
-                    opt.value = age;
-                    opt.textContent = formatAgeLabel(age);
-                    select.appendChild(opt);
-                });
+            sortedAges = Object.keys(data).map(Number).sort((a, b) => a - b);
+            sortedAges.forEach(age => {
+                const opt = document.createElement('option');
+                opt.value = age;
+                opt.textContent = formatAgeLabel(age);
+                select.appendChild(opt);
+            });
         })
         .catch(() => {
             resultsBox.classList.remove('hidden');
@@ -35,27 +35,54 @@ document.addEventListener('DOMContentLoaded', () => {
             fineList.innerHTML = '';
         });
 
-    function renderList(listEl, skills, colorClass) {
+    // If the selected age has no entry for this category, fall back to the most recent
+    // earlier age that does have one, so the card shows the last achieved milestone
+    // instead of an empty box.
+    function findAchieved(category, selectedAge) {
+        for (let i = sortedAges.length - 1; i >= 0; i--) {
+            const age = sortedAges[i];
+            if (age > selectedAge) continue;
+            const skills = milestoneData[age][category];
+            if (skills && skills.length > 0) return { skills, age };
+        }
+        return null;
+    }
+
+    function renderList(listEl, category, colorClass, selectedAge) {
         listEl.innerHTML = '';
-        if (!skills || skills.length === 0) {
-            listEl.innerHTML = `<li class="text-brand-textSoft text-sm italic">No specific milestone listed at this age.</li>`;
+        const currentSkills = milestoneData[selectedAge][category];
+
+        if (currentSkills && currentSkills.length > 0) {
+            currentSkills.forEach(item => renderCard(listEl, item, colorClass, null));
             return;
         }
-        skills.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'bg-white rounded-xl px-4 py-2.5 shadow-sm border border-brand-lavender/40 flex items-start gap-3 text-sm text-brand-text';
-            li.innerHTML = `<i class="fa-solid fa-circle-check ${colorClass} mt-0.5"></i><span>${item.skill}</span>`;
-            listEl.appendChild(li);
-        });
+
+        const achieved = findAchieved(category, selectedAge);
+        if (!achieved) {
+            listEl.innerHTML = `<p class="col-span-full text-brand-textSoft text-sm italic">No milestone listed yet for this age.</p>`;
+            return;
+        }
+        achieved.skills.forEach(item => renderCard(listEl, item, colorClass, achieved.age));
+    }
+
+    function renderCard(listEl, item, colorClass, achievedAtAge) {
+        const card = document.createElement('div');
+        card.className = 'bg-white/80 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all overflow-hidden flex flex-col';
+        const imgHtml = item.image
+            ? `<img src="assets/milestones/${item.image}" alt="${item.skill}" class="w-full aspect-square object-contain bg-brand-babypink/20 p-2" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full aspect-square flex items-center justify-center text-3xl ${colorClass} bg-brand-babypink/40',innerHTML:'<i class=\\'fa-solid fa-circle-check\\'></i>'}))">`
+            : `<div class="w-full aspect-square flex items-center justify-center text-3xl ${colorClass} bg-brand-babypink/40"><i class="fa-solid fa-circle-check"></i></div>`;
+        const ageNote = achievedAtAge !== null ? ` <span class="text-brand-textSoft font-normal">(${formatAgeLabel(achievedAtAge)})</span>` : '';
+        card.innerHTML = `${imgHtml}<p class="text-sm font-semibold text-brand-text p-3">${item.skill}${ageNote}</p>`;
+        listEl.appendChild(card);
     }
 
     function showMilestones() {
         if (!milestoneData || !select.value) return;
-        const entry = milestoneData[select.value];
-        if (!entry) return;
+        const selectedAge = Number(select.value);
+        if (!milestoneData[selectedAge]) return;
 
-        renderList(grossList, entry.gross_motor, 'text-brand-blueDeep');
-        renderList(fineList, entry.fine_motor, 'text-brand-blush');
+        renderList(grossList, 'gross_motor', 'text-brand-blueDeep', selectedAge);
+        renderList(fineList, 'fine_motor', 'text-brand-blush', selectedAge);
 
         resultsBox.classList.remove('hidden');
         resultsBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

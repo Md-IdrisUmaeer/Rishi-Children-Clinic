@@ -43,6 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const WHO_SD_LEVELS = [-3, -2, -1, 0, 1, 2, 3];
     const WHO_SD_LABEL = { '-3': '-3 SD', '-2': '-2 SD', '-1': '-1 SD', '0': 'Median', '1': '+1 SD', '2': '+2 SD', '3': '+3 SD' };
 
+    // Standard clinical "traffic-light" colour convention: green = normal band (-2 to +2 SD /
+    // 3rd-97th percentile), amber = borderline (-3/-2 SD, 85th-97th), red = the outer/extreme lines.
+    const BAND_COLOR = { extreme: '#DC2626', borderline: '#F59E0B', normal: '#22A06B' };
+
+    function whoLineColor(sd) {
+        if (sd === 0) return BAND_COLOR.normal;
+        if (Math.abs(sd) === 1) return BAND_COLOR.normal;
+        if (Math.abs(sd) === 2) return BAND_COLOR.borderline;
+        return BAND_COLOR.extreme;
+    }
+
+    function iapLineColor(p) {
+        if (p === 50) return BAND_COLOR.normal;
+        if (p === 15 || p === 85) return BAND_COLOR.borderline;
+        return BAND_COLOR.extreme;
+    }
+
     const dataCache = {};
     let chartInstance = null;
     let lastResults = null; // { weight: {...}, height: {...}, bmi: {...}, standard, ageMonths, sex }
@@ -178,6 +195,24 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    // Simple qualitative read of where the child falls, in plain language — not a diagnosis,
+    // just a quick "how is this looking" note next to the numbers.
+    function interpretation(z, percentile) {
+        // Prefer the WHO z-score when we have one; otherwise fall back to the IAP percentile.
+        if (z !== null && !isNaN(z)) {
+            if (z < -3) return { text: 'Well below the normal range', color: 'text-red-500' };
+            if (z < -2) return { text: 'Below the normal range', color: 'text-amber-500' };
+            if (z <= 2) return { text: 'Within the normal range', color: 'text-emerald-600' };
+            if (z <= 3) return { text: 'Above the normal range', color: 'text-amber-500' };
+            return { text: 'Well above the normal range', color: 'text-red-500' };
+        }
+        if (percentile < 3) return { text: 'Below the normal range', color: 'text-red-500' };
+        if (percentile < 15) return { text: 'On the lower side of normal', color: 'text-amber-500' };
+        if (percentile <= 85) return { text: 'Within the normal range', color: 'text-emerald-600' };
+        if (percentile <= 97) return { text: 'On the higher side of normal', color: 'text-amber-500' };
+        return { text: 'Above the normal range', color: 'text-red-500' };
+    }
+
     function renderSummary(results) {
         summaryBox.innerHTML = '';
         ['weight', 'height', 'bmi'].forEach(metric => {
@@ -186,10 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'bg-white rounded-2xl p-4 shadow-sm border border-brand-lavender/40';
             const zLine = (r.z !== null && !isNaN(r.z)) ? `<p class="text-[11px] text-brand-textSoft mt-1">Z = ${r.z.toFixed(2)}</p>` : '';
+            const note = interpretation(r.z, r.percentile);
             card.innerHTML = `
                 <p class="text-xs font-bold uppercase tracking-wide text-brand-textSoft">${METRIC_LABEL[metric]}</p>
                 <p class="text-lg font-bold text-brand-text mt-1">${ordinal(r.percentile)} percentile</p>
                 ${zLine}
+                <p class="text-xs font-semibold mt-2 ${note.color}">${note.text}</p>
             `;
             summaryBox.appendChild(card);
         });
@@ -214,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const datasets = WHO_SD_LEVELS.map(sd => ({
             label: WHO_SD_LABEL[sd],
             data: seriesBySd[sd],
-            borderColor: sd === 0 ? '#C6A8E8' : '#9FCBEC',
+            borderColor: whoLineColor(sd),
             borderWidth: sd === 0 ? 2.5 : 1.5,
             borderDash: sd === 0 ? [] : [4, 3],
             pointRadius: 0,
@@ -250,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return {
                 label: p + 'th percentile',
                 data: rows.map(r => r.values[idx]),
-                borderColor: p === 50 ? '#C6A8E8' : '#9FCBEC',
+                borderColor: iapLineColor(p),
                 borderWidth: p === 50 ? 2.5 : 1.5,
                 borderDash: p === 50 ? [] : [4, 3],
                 pointRadius: 0,
@@ -314,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-        document.getElementById('growthChart').parentElement.style.height = '360px';
+        document.getElementById('growthChart').parentElement.style.height = '420px';
     }
 
     metricSelect.addEventListener('change', () => renderChart(metricSelect.value));
