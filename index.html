@@ -28,7 +28,7 @@
     <meta property="og:title" content="Rishi Children Clinic | Best Pediatrician in Madipakkam, Chennai">
     <meta property="og:description"
         content="Trusted pediatric &amp; neonatal care in Madipakkam, Chennai — vaccinations, growth tracking, developmental screening.">
-    <meta property="og:image" content="logo.png">
+    <meta property="og:image" content="assets/logo.jpg">
     <meta property="og:url" content="https://www.rishichildrensclinic.com/">
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Rishi Children Clinic">
@@ -38,7 +38,7 @@
     <meta name="twitter:title" content="Rishi Children Clinic | Best Pediatrician in Madipakkam, Chennai">
     <meta name="twitter:description"
         content="Trusted pediatric &amp; neonatal care in Madipakkam, Chennai — vaccinations, growth tracking, developmental screening .">
-    <meta name="twitter:image" content="logo.png">
+    <meta name="twitter:image" content="assets/logo.jpg">
 
     <!-- Structured Data: MedicalClinic (Local SEO / Google rich results) -->
     <script type="application/ld+json">
@@ -46,7 +46,7 @@
         "@context": "https://schema.org",
         "@type": "MedicalClinic",
         "name": "Rishi Children Clinic",
-        "image": "logo.png",
+        "image": "assets/logo.jpg",
         "description": "Pediatric and neonatal clinic in Madipakkam, Chennai offering child care, vaccination, growth &amp; nutrition monitoring, developmental assessment and mother care.",
         "url": "https://www.rishichildrensclinic.com/",
         "telephone": "+91-90425-80801",
@@ -203,22 +203,10 @@
     <header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md shadow-sm">
         <!-- Logo + Name (top-left). Rest of this row intentionally empty. -->
         <div class="container mx-auto px-4 pt-4 pb-2 flex items-center">
-            <a href="#" class="flex items-center gap-3">
-                <div class="w-14 h-14 rounded-full bg-white shadow-sm overflow-hidden flex items-center justify-center">
-                    <img src="logo.png" alt="Rishi Children Clinic Logo" class="w-full h-full object-cover scale-150"
-                        onerror="this.parentElement.replaceWith(Object.assign(document.createElement('div'), {className:'w-14 h-14 rounded-full bg-brand-pink flex items-center justify-center text-white text-2xl shadow-sm', innerHTML:'<i class=\'fa-solid fa-baby-carriage\'></i>'}))">
-                </div>
-                <div>
-                    <h1 class="text-xl md:text-2xl font-bold text-brand-text leading-tight">
-                        <span class="font-script text-2xl md:text-3xl text-orange-500 align-middle">Rishi</span>
-
-                        Children Clinic
-                        <span class="block text-[11px] md:text-xs font-semibold text-brand-textSoft">Pediatric Clinic in
-                            Madipakkam, Chennai</span>
-                    </h1>
-                    <p class="text-[11px] text-brand-textSoft tracking-wide font-semibold">Trusted Care for you Child
-                    </p>
-                </div>
+            <a href="#" class="flex items-center" aria-label="Rishi Children Clinic - Madipakkam, Chennai">
+                <img src="assets/logo.jpg" alt="Rishi Children Clinic - Trusted care for your child, Madipakkam, Chennai"
+                    class="h-14 md:h-16 w-auto mix-blend-multiply">
+                <h1 class="sr-only">Rishi Children Clinic - Pediatric Clinic in Madipakkam, Chennai</h1>
             </a>
             <!-- Remaining header space left empty on purpose -->
         </div>
@@ -277,11 +265,10 @@
                             Madipakkam, Chennai — compassionate care that grows with your family, from your very
                             first checkup together to every little milestone after.</p>
                     </div>
-                    <div class="md:w-1/3 mt-8 md:mt-0 flex justify-center">
-                        <div
-                            class="w-52 h-52 md:w-64 md:h-64 bg-white/40 rounded-full flex items-center justify-center border-4 border-white/50">
-                            <i class="fa-solid fa-hand-holding-heart text-8xl md:text-9xl text-white/90"></i>
-                        </div>
+                    <div class="md:w-5/12 mt-8 md:mt-0 flex justify-center">
+                        <img src="assets/home-hero.jpg"
+                            alt="Happy parents hugging their smiling child - Rishi Children Clinic, Madipakkam"
+                            class="w-full max-w-md rounded-3xl mix-blend-multiply" loading="eager">
                     </div>
                 </div>
             </section>
@@ -530,8 +517,8 @@
                     <span class="text-xs font-bold uppercase tracking-widest text-brand-blueDeep">Watch Them
                         Grow</span>
                     <h2 class="text-3xl font-bold text-brand-text">Developmental Milestones</h2>
-                    <p class="text-brand-textSoft">Select your child's age to see the gross &amp; fine motor
-                        milestones expected at that stage.</p>
+                    <p class="text-brand-textSoft">Select your child's age to see the gross motor, fine motor, social
+                        &amp; language milestones expected at that stage.</p>
                 </div>
 
                 <div class="bg-white/80 rounded-2xl shadow-md border border-white p-6 md:p-8">
@@ -546,7 +533,7 @@
                         </button>
                     </div>
 
-                    <div id="devResults" class="hidden mt-6 max-w-3xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div id="devResults" class="hidden mt-6 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div class="bg-brand-babypink/30 rounded-2xl p-4">
                             <h4 class="text-sm font-bold text-brand-blueDeep uppercase tracking-wide mb-3">
                                 <i class="fa-solid fa-person-walking mr-1"></i> Gross Motor
@@ -558,6 +545,18 @@
                                 <i class="fa-solid fa-hand mr-1"></i> Fine Motor
                             </h4>
                             <div id="devFineMotorList" class="grid grid-cols-2 gap-4"></div>
+                        </div>
+                        <div class="bg-brand-babypink/30 rounded-2xl p-4">
+                            <h4 class="text-sm font-bold text-brand-lavenderDeep uppercase tracking-wide mb-3">
+                                <i class="fa-solid fa-people-group mr-1"></i> Social &amp; Adaptive
+                            </h4>
+                            <div id="devSocialList" class="grid grid-cols-2 gap-4"></div>
+                        </div>
+                        <div class="bg-brand-babypink/30 rounded-2xl p-4">
+                            <h4 class="text-sm font-bold text-brand-blueDeep uppercase tracking-wide mb-3">
+                                <i class="fa-solid fa-comments mr-1"></i> Language
+                            </h4>
+                            <div id="devLanguageList" class="grid grid-cols-2 gap-4"></div>
                         </div>
                     </div>
                     <p class="text-center text-[11px] text-brand-textSoft mt-6 italic">Every child develops at their
@@ -584,9 +583,9 @@
 
                 <!-- Doctor Card 2 -->
                 <div class="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all">
-                    <div
-                        class="img-placeholder w-28 h-28 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-brand-textSoft border-4 border-white shadow">
-                        <i class="fa-solid fa-user-doctor"></i>
+                    <div class="w-36 h-36 rounded-full mx-auto mb-4 border-4 border-white shadow overflow-hidden bg-brand-babypink">
+                        <img src="assets/doctors/dr-aishwarya.jpg" alt="Dr. Aishwarya V - Consultant Pediatrician &amp; Neonatologist, Madipakkam"
+                            class="w-full h-full object-cover object-[50%_22%]">
                     </div>
                     <h3 class="text-xl font-bold text-brand-text">Dr. Aishwarya V</h3>
                     <p class="text-brand-lavenderDeep text-sm font-semibold mb-1">Consultant Pediatrician &amp;

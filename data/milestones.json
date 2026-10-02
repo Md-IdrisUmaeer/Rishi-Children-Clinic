@@ -1,12 +1,31 @@
 {
+  "1": {
+    "language": [
+      { "skill": "Alerts to sound", "image": "speech-language/alerts-to-sound.jpg" }
+    ]
+  },
+  "2": {
+    "social": [
+      { "skill": "Social smile (smile after being talked to)", "image": "social/social-smile.jpg" }
+    ]
+  },
   "3": {
     "gross_motor": [
       { "skill": "Neck holding", "image": "gross-motor/neck-holding.jpg" }
+    ],
+    "social": [
+      { "skill": "Recognizes mother; anticipates feeds", "image": "social/recognizes-mother.jpg" }
+    ],
+    "language": [
+      { "skill": "Coos (musical vowel sounds)", "image": "speech-language/coos.jpg" }
     ]
   },
   "4": {
     "fine_motor": [
       { "skill": "Bidextrous reach (reaching out for objects with both hands)", "image": "fine-motor/bidextrous-reach.jpg" }
+    ],
+    "language": [
+      { "skill": "Laughs loud", "image": "speech-language/laughs-loud.jpg" }
     ]
   },
   "5": {
@@ -20,6 +39,12 @@
     ],
     "gross_motor": [
       { "skill": "Sits in tripod fashion (sitting with own support)", "image": "gross-motor/tripod-sitting.jpg" }
+    ],
+    "social": [
+      { "skill": "Recognizes strangers; stranger anxiety", "image": "social/recognizes-strangers.jpg" }
+    ],
+    "language": [
+      { "skill": "Monosyllables (ba, da, pa), ah-goo sounds", "image": "speech-language/monosyllables.jpg" }
     ]
   },
   "8": {
@@ -33,6 +58,12 @@
     ],
     "gross_motor": [
       { "skill": "Stands holding on (with support)", "image": "gross-motor/stands-holding-on.jpg" }
+    ],
+    "social": [
+      { "skill": "Waves \"bye bye\"", "image": "social/waves-bye-bye.jpg" }
+    ],
+    "language": [
+      { "skill": "Bisyllables (mama, baba, dada)", "image": "speech-language/bisyllables.jpg" }
     ]
   },
   "12": {
@@ -41,6 +72,12 @@
     ],
     "gross_motor": [
       { "skill": "Creeps well; walks but falls; stands without support", "image": "gross-motor/walks-but-falls-stands-without-support.jpg" }
+    ],
+    "social": [
+      { "skill": "Comes when called; plays simple ball game", "image": "social/comes-when-called-simple-ball-game.jpg" }
+    ],
+    "language": [
+      { "skill": "1–2 words with meaning", "image": "speech-language/one-two-words-with-meaning.jpg" }
     ]
   },
   "15": {
@@ -49,6 +86,9 @@
     ],
     "gross_motor": [
       { "skill": "Walks alone; creeps upstairs", "image": "gross-motor/creeps-upstairs-walks-alone.jpg" }
+    ],
+    "social": [
+      { "skill": "Jargon", "image": "social/jargon.jpg" }
     ]
   },
   "18": {
@@ -57,6 +97,12 @@
     ],
     "gross_motor": [
       { "skill": "Runs; explores drawers", "image": "gross-motor/runs.jpg" }
+    ],
+    "social": [
+      { "skill": "Copies parents in task (e.g. sweeping)", "image": "social/copies-parents-in-task.jpg" }
+    ],
+    "language": [
+      { "skill": "8–10 word vocabulary", "image": "speech-language/eight-ten-word-vocabulary.jpg" }
     ]
   },
   "24": {
@@ -65,6 +111,12 @@
     ],
     "gross_motor": [
       { "skill": "Walks up and downstairs (2 feet/step); jumps", "image": "gross-motor/walks-up-down-stairs-jumps.jpg" }
+    ],
+    "social": [
+      { "skill": "Asks for food, drink, toilet; pulls people to show toys", "image": "social/asks-for-food-drink-toilet.jpg" }
+    ],
+    "language": [
+      { "skill": "2–3 word sentences; uses pronouns “I”, “me”, “you”", "image": "speech-language/two-three-word-sentences-pronouns.jpg" }
     ]
   },
   "36": {
@@ -73,6 +125,13 @@
     ],
     "gross_motor": [
       { "skill": "Rides tricycle; alternate feet going upstairs", "image": "gross-motor/rides-tricycle.jpg" }
+    ],
+    "social": [
+      { "skill": "Shares toys; knows full name and gender", "image": "social/shares-toys-knows-name-gender.jpg" }
+    ],
+    "language": [
+      { "skill": "Asks questions", "image": "speech-language/asks-questions.jpg" },
+      { "skill": "Knows full name and gender", "image": "speech-language/knows-full-name-and-gender.jpg" }
     ]
   },
   "48": {
@@ -81,11 +140,23 @@
     ],
     "gross_motor": [
       { "skill": "Hops on one foot; alternate feet going downstairs", "image": "gross-motor/hops-on-one-foot.jpg" }
+    ],
+    "social": [
+      { "skill": "Plays cooperatively in a group; goes to toilet alone", "image": "social/plays-cooperatively-in-group.jpg" }
+    ],
+    "language": [
+      { "skill": "Says song or poem; tells stories", "image": "speech-language/says-song-or-poem-tells-stories.jpg" }
     ]
   },
   "60": {
     "fine_motor": [
       { "skill": "Copies triangle; gate with blocks", "image": "fine-motor/copies-triangle-gate-blocks.jpg" }
+    ],
+    "social": [
+      { "skill": "Helps in household tasks, dresses and undresses", "image": "social/helps-household-tasks-dresses-undresses.jpg" }
+    ],
+    "language": [
+      { "skill": "Asks meaning of words", "image": "speech-language/asks-meaning-of-words.jpg" }
     ]
   }
 }

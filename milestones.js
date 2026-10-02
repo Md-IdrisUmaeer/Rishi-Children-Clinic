@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsBox = document.getElementById('devResults');
     const grossList = document.getElementById('devGrossMotorList');
     const fineList = document.getElementById('devFineMotorList');
+    const socialList = document.getElementById('devSocialList');
+    const languageList = document.getElementById('devLanguageList');
 
     let milestoneData = null;
     let sortedAges = []; // numeric ages, ascending
@@ -33,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsBox.classList.remove('hidden');
             grossList.innerHTML = '<li class="text-red-400 text-sm text-center">Could not load milestone data right now.</li>';
             fineList.innerHTML = '';
+            socialList.innerHTML = '';
+            languageList.innerHTML = '';
         });
 
     // If the selected age has no entry for this category, fall back to the most recent
@@ -83,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderList(grossList, 'gross_motor', 'text-brand-blueDeep', selectedAge);
         renderList(fineList, 'fine_motor', 'text-brand-blush', selectedAge);
+        renderList(socialList, 'social', 'text-brand-lavenderDeep', selectedAge);
+        renderList(languageList, 'language', 'text-brand-blush', selectedAge);
 
         resultsBox.classList.remove('hidden');
         resultsBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
