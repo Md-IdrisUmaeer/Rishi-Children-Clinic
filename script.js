@@ -56,7 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let toastTimeout;
 
     if (phoneEl) {
-        phoneEl.addEventListener('click', async () => {
+        phoneEl.addEventListener('click', async (e) => {
+            // On phones/tablets let the tel: link open the dialer.
+            // On desktop (mouse + hover) there is no dialer, so copy the number instead.
+            const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            if (!isDesktop) return;
+            e.preventDefault();
             const number = phoneEl.getAttribute('data-phone') || phoneEl.textContent.trim();
             try {
                 await navigator.clipboard.writeText(number);

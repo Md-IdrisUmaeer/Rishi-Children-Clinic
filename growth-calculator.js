@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const datasets = uniqueChosen.map(p => {
             const idx = percentiles.indexOf(p);
             return {
-                label: p + 'th percentile',
+                label: ordinal(p) + ' percentile',
                 data: rows.map(r => r.values[idx]),
                 borderColor: iapLineColor(p),
                 borderWidth: p === 50 ? 2.5 : 1.5,

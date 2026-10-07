@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'bg-white/80 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all overflow-hidden flex flex-col';
         const imgHtml = item.image
-            ? `<img src="assets/milestones/${item.image}" alt="${item.skill}" class="w-full aspect-square object-contain bg-brand-babypink/20 p-2" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full aspect-square flex items-center justify-center text-3xl ${colorClass} bg-brand-babypink/40',innerHTML:'<i class=\\'fa-solid fa-circle-check\\'></i>'}))">`
+            ? `<img src="assets/milestones/${item.image}" alt="${item.skill}" width="500" height="500" loading="lazy" decoding="async" class="w-full aspect-square object-contain bg-brand-babypink/20 p-2" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'w-full aspect-square flex items-center justify-center text-3xl ${colorClass} bg-brand-babypink/40',innerHTML:'<i class=\\'fa-solid fa-circle-check\\'></i>'}))">`
             : `<div class="w-full aspect-square flex items-center justify-center text-3xl ${colorClass} bg-brand-babypink/40"><i class="fa-solid fa-circle-check"></i></div>`;
         const ageNote = achievedAtAge !== null ? ` <span class="text-brand-textSoft font-normal">(${formatAgeLabel(achievedAtAge)})</span>` : '';
         card.innerHTML = `${imgHtml}<p class="text-sm font-semibold text-brand-text p-3">${item.skill}${ageNote}</p>`;

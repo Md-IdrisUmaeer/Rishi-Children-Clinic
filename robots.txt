@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.rishichildrensclinic.com/sitemap.xml
+Sitemap: https://www.rishichildrenclinic.com/sitemap.xml

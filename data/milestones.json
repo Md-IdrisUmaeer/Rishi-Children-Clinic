@@ -1,162 +1,162 @@
 {
   "1": {
     "language": [
-      { "skill": "Alerts to sound", "image": "speech-language/alerts-to-sound.jpg" }
+      { "skill": "Alerts to sound", "image": "speech-language/alerts-to-sound.webp" }
     ]
   },
   "2": {
     "social": [
-      { "skill": "Social smile (smile after being talked to)", "image": "social/social-smile.jpg" }
+      { "skill": "Social smile (smile after being talked to)", "image": "social/social-smile.webp" }
     ]
   },
   "3": {
     "gross_motor": [
-      { "skill": "Neck holding", "image": "gross-motor/neck-holding.jpg" }
+      { "skill": "Neck holding", "image": "gross-motor/neck-holding.webp" }
     ],
     "social": [
-      { "skill": "Recognizes mother; anticipates feeds", "image": "social/recognizes-mother.jpg" }
+      { "skill": "Recognizes mother; anticipates feeds", "image": "social/recognizes-mother.webp" }
     ],
     "language": [
-      { "skill": "Coos (musical vowel sounds)", "image": "speech-language/coos.jpg" }
+      { "skill": "Coos (musical vowel sounds)", "image": "speech-language/coos.webp" }
     ]
   },
   "4": {
     "fine_motor": [
-      { "skill": "Bidextrous reach (reaching out for objects with both hands)", "image": "fine-motor/bidextrous-reach.jpg" }
+      { "skill": "Bidextrous reach (reaching out for objects with both hands)", "image": "fine-motor/bidextrous-reach.webp" }
     ],
     "language": [
-      { "skill": "Laughs loud", "image": "speech-language/laughs-loud.jpg" }
+      { "skill": "Laughs loud", "image": "speech-language/laughs-loud.webp" }
     ]
   },
   "5": {
     "gross_motor": [
-      { "skill": "Rolls over", "image": "gross-motor/rolls-over.jpg" }
+      { "skill": "Rolls over", "image": "gross-motor/rolls-over.webp" }
     ]
   },
   "6": {
     "fine_motor": [
-      { "skill": "Unidextrous reach (reaching out for objects with one hand); transfers objects", "image": "fine-motor/unidextrous-reach-transfers-objects.jpg" }
+      { "skill": "Unidextrous reach (reaching out for objects with one hand); transfers objects", "image": "fine-motor/unidextrous-reach-transfers-objects.webp" }
     ],
     "gross_motor": [
-      { "skill": "Sits in tripod fashion (sitting with own support)", "image": "gross-motor/tripod-sitting.jpg" }
+      { "skill": "Sits in tripod fashion (sitting with own support)", "image": "gross-motor/tripod-sitting.webp" }
     ],
     "social": [
-      { "skill": "Recognizes strangers; stranger anxiety", "image": "social/recognizes-strangers.jpg" }
+      { "skill": "Recognizes strangers; stranger anxiety", "image": "social/recognizes-strangers.webp" }
     ],
     "language": [
-      { "skill": "Monosyllables (ba, da, pa), ah-goo sounds", "image": "speech-language/monosyllables.jpg" }
+      { "skill": "Monosyllables (ba, da, pa), ah-goo sounds", "image": "speech-language/monosyllables.webp" }
     ]
   },
   "8": {
     "gross_motor": [
-      { "skill": "Sitting without support", "image": "gross-motor/sitting-without-support.jpg" }
+      { "skill": "Sitting without support", "image": "gross-motor/sitting-without-support.webp" }
     ]
   },
   "9": {
     "fine_motor": [
-      { "skill": "Immature pincer grasp; probes with forefinger", "image": "fine-motor/immature-pincer-grasp.jpg" }
+      { "skill": "Immature pincer grasp; probes with forefinger", "image": "fine-motor/immature-pincer-grasp.webp" }
     ],
     "gross_motor": [
-      { "skill": "Stands holding on (with support)", "image": "gross-motor/stands-holding-on.jpg" }
+      { "skill": "Stands holding on (with support)", "image": "gross-motor/stands-holding-on.webp" }
     ],
     "social": [
-      { "skill": "Waves \"bye bye\"", "image": "social/waves-bye-bye.jpg" }
+      { "skill": "Waves \"bye bye\"", "image": "social/waves-bye-bye.webp" }
     ],
     "language": [
-      { "skill": "Bisyllables (mama, baba, dada)", "image": "speech-language/bisyllables.jpg" }
+      { "skill": "Bisyllables (mama, baba, dada)", "image": "speech-language/bisyllables.webp" }
     ]
   },
   "12": {
     "fine_motor": [
-      { "skill": "Pincer grasp mature", "image": "fine-motor/mature-pincer-grasp.jpg" }
+      { "skill": "Pincer grasp mature", "image": "fine-motor/mature-pincer-grasp.webp" }
     ],
     "gross_motor": [
-      { "skill": "Creeps well; walks but falls; stands without support", "image": "gross-motor/walks-but-falls-stands-without-support.jpg" }
+      { "skill": "Creeps well; walks but falls; stands without support", "image": "gross-motor/walks-but-falls-stands-without-support.webp" }
     ],
     "social": [
-      { "skill": "Comes when called; plays simple ball game", "image": "social/comes-when-called-simple-ball-game.jpg" }
+      { "skill": "Comes when called; plays simple ball game", "image": "social/comes-when-called-simple-ball-game.webp" }
     ],
     "language": [
-      { "skill": "1–2 words with meaning", "image": "speech-language/one-two-words-with-meaning.jpg" }
+      { "skill": "1–2 words with meaning", "image": "speech-language/one-two-words-with-meaning.webp" }
     ]
   },
   "15": {
     "fine_motor": [
-      { "skill": "Imitates scribbling; tower of 2 blocks", "image": "fine-motor/imitates-scribbling-tower-of-2-blocks.jpg" }
+      { "skill": "Imitates scribbling; tower of 2 blocks", "image": "fine-motor/imitates-scribbling-tower-of-2-blocks.webp" }
     ],
     "gross_motor": [
-      { "skill": "Walks alone; creeps upstairs", "image": "gross-motor/creeps-upstairs-walks-alone.jpg" }
+      { "skill": "Walks alone; creeps upstairs", "image": "gross-motor/creeps-upstairs-walks-alone.webp" }
     ],
     "social": [
-      { "skill": "Jargon", "image": "social/jargon.jpg" }
+      { "skill": "Jargon", "image": "social/jargon.webp" }
     ]
   },
   "18": {
     "fine_motor": [
-      { "skill": "Scribbles; tower of 3 blocks", "image": "fine-motor/scribbles-tower-of-3-blocks.jpg" }
+      { "skill": "Scribbles; tower of 3 blocks", "image": "fine-motor/scribbles-tower-of-3-blocks.webp" }
     ],
     "gross_motor": [
-      { "skill": "Runs; explores drawers", "image": "gross-motor/runs.jpg" }
+      { "skill": "Runs; explores drawers", "image": "gross-motor/runs.webp" }
     ],
     "social": [
-      { "skill": "Copies parents in task (e.g. sweeping)", "image": "social/copies-parents-in-task.jpg" }
+      { "skill": "Copies parents in task (e.g. sweeping)", "image": "social/copies-parents-in-task.webp" }
     ],
     "language": [
-      { "skill": "8–10 word vocabulary", "image": "speech-language/eight-ten-word-vocabulary.jpg" }
+      { "skill": "8–10 word vocabulary", "image": "speech-language/eight-ten-word-vocabulary.webp" }
     ]
   },
   "24": {
     "fine_motor": [
-      { "skill": "Tower of 6 blocks; vertical and circular stroke", "image": "fine-motor/vertical-circular-stroke-tower-of-6-blocks.jpg" }
+      { "skill": "Tower of 6 blocks; vertical and circular stroke", "image": "fine-motor/vertical-circular-stroke-tower-of-6-blocks.webp" }
     ],
     "gross_motor": [
-      { "skill": "Walks up and downstairs (2 feet/step); jumps", "image": "gross-motor/walks-up-down-stairs-jumps.jpg" }
+      { "skill": "Walks up and downstairs (2 feet/step); jumps", "image": "gross-motor/walks-up-down-stairs-jumps.webp" }
     ],
     "social": [
-      { "skill": "Asks for food, drink, toilet; pulls people to show toys", "image": "social/asks-for-food-drink-toilet.jpg" }
+      { "skill": "Asks for food, drink, toilet; pulls people to show toys", "image": "social/asks-for-food-drink-toilet.webp" }
     ],
     "language": [
-      { "skill": "2–3 word sentences; uses pronouns “I”, “me”, “you”", "image": "speech-language/two-three-word-sentences-pronouns.jpg" }
+      { "skill": "2–3 word sentences; uses pronouns “I”, “me”, “you”", "image": "speech-language/two-three-word-sentences-pronouns.webp" }
     ]
   },
   "36": {
     "fine_motor": [
-      { "skill": "Tower of 9 blocks; copies circle", "image": "fine-motor/copies-circle-tower-of-9-blocks.jpg" }
+      { "skill": "Tower of 9 blocks; copies circle", "image": "fine-motor/copies-circle-tower-of-9-blocks.webp" }
     ],
     "gross_motor": [
-      { "skill": "Rides tricycle; alternate feet going upstairs", "image": "gross-motor/rides-tricycle.jpg" }
+      { "skill": "Rides tricycle; alternate feet going upstairs", "image": "gross-motor/rides-tricycle.webp" }
     ],
     "social": [
-      { "skill": "Shares toys; knows full name and gender", "image": "social/shares-toys-knows-name-gender.jpg" }
+      { "skill": "Shares toys; knows full name and gender", "image": "social/shares-toys-knows-name-gender.webp" }
     ],
     "language": [
-      { "skill": "Asks questions", "image": "speech-language/asks-questions.jpg" },
-      { "skill": "Knows full name and gender", "image": "speech-language/knows-full-name-and-gender.jpg" }
+      { "skill": "Asks questions", "image": "speech-language/asks-questions.webp" },
+      { "skill": "Knows full name and gender", "image": "speech-language/knows-full-name-and-gender.webp" }
     ]
   },
   "48": {
     "fine_motor": [
-      { "skill": "Copies cross; bridge with blocks", "image": "fine-motor/copies-cross-bridge-blocks.jpg" }
+      { "skill": "Copies cross; bridge with blocks", "image": "fine-motor/copies-cross-bridge-blocks.webp" }
     ],
     "gross_motor": [
-      { "skill": "Hops on one foot; alternate feet going downstairs", "image": "gross-motor/hops-on-one-foot.jpg" }
+      { "skill": "Hops on one foot; alternate feet going downstairs", "image": "gross-motor/hops-on-one-foot.webp" }
     ],
     "social": [
-      { "skill": "Plays cooperatively in a group; goes to toilet alone", "image": "social/plays-cooperatively-in-group.jpg" }
+      { "skill": "Plays cooperatively in a group; goes to toilet alone", "image": "social/plays-cooperatively-in-group.webp" }
     ],
     "language": [
-      { "skill": "Says song or poem; tells stories", "image": "speech-language/says-song-or-poem-tells-stories.jpg" }
+      { "skill": "Says song or poem; tells stories", "image": "speech-language/says-song-or-poem-tells-stories.webp" }
     ]
   },
   "60": {
     "fine_motor": [
-      { "skill": "Copies triangle; gate with blocks", "image": "fine-motor/copies-triangle-gate-blocks.jpg" }
+      { "skill": "Copies triangle; gate with blocks", "image": "fine-motor/copies-triangle-gate-blocks.webp" }
     ],
     "social": [
-      { "skill": "Helps in household tasks, dresses and undresses", "image": "social/helps-household-tasks-dresses-undresses.jpg" }
+      { "skill": "Helps in household tasks, dresses and undresses", "image": "social/helps-household-tasks-dresses-undresses.webp" }
     ],
     "language": [
-      { "skill": "Asks meaning of words", "image": "speech-language/asks-meaning-of-words.jpg" }
+      { "skill": "Asks meaning of words", "image": "speech-language/asks-meaning-of-words.webp" }
     ]
   }
 }
