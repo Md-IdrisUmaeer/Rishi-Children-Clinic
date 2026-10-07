@@ -3,9 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rishi Children Clinic - Trusted Care for your child</title>
+    <title>Rishi Children Clinic | Pediatrician in Madipakkam, Chennai</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -15,15 +14,14 @@
     <!-- SEO META TAGS                                -->
     <!-- ========================================== -->
     <meta name="description"
-        content="Rishi Children Clinic in Ayyappan Nagar, Madipakkam, Chennai offers trusted pediatric &amp; neonatal care, vaccinations, growth &amp; nutrition monitoring, developmental screening and mother care. Book an appointment: +91 90425 80801.">
-    <meta name="keywords"
-        content="pediatrician in madipakkam, children clinic madipakkam, best pediatrician chennai, child specialist madipakkam, neonatologist chennai, vaccination clinic madipakkam, child growth chart, Dr Rajkali R, Dr Aishwarya V, Rishi Children Clinic, pediatric gastro liver nutrition chennai,child care Ayyappan Nagar">
-    <meta name="robots" content="index, follow">
+        content="Rishi Children Clinic in Ayyappan Nagar, Madipakkam, Chennai: pediatric &amp; neonatal care, vaccinations, growth tracking and developmental screening. Call +91 90425 80801.">
+    <!-- INDEXING: keep noindex until www.rishichildrenclinic.com is live. At launch, replace the line below with:
+         <meta name="robots" content="index, follow, max-image-preview:large"> -->
+    <meta name="robots" content="noindex, nofollow">
     <meta name="author" content="Rishi Children Clinic">
     <meta name="geo.region" content="IN-TN">
     <meta name="geo.placename" content="Madipakkam, Chennai">
     <meta name="geo.position" content="12.9639;80.1985">
-    <meta name="ICBM" content="12.9639, 80.1985">
     <link rel="canonical" href="https://www.rishichildrenclinic.com/">
 
     <!-- Open Graph / Facebook -->
@@ -51,10 +49,11 @@
     {
         "@context": "https://schema.org",
         "@type": "MedicalClinic",
+        "@id": "https://www.rishichildrenclinic.com/#clinic",
         "name": "Rishi Children Clinic",
         "image": "https://www.rishichildrenclinic.com/assets/og-image.jpg",
         "logo": "https://www.rishichildrenclinic.com/assets/logo.webp",
-        "description": "Pediatric and neonatal clinic in Madipakkam, Chennai offering child care, vaccination, growth &amp; nutrition monitoring, developmental assessment and mother care.",
+        "description": "Pediatric and neonatal clinic in Madipakkam, Chennai offering child care, vaccination, growth & nutrition monitoring, developmental assessment and mother care.",
         "url": "https://www.rishichildrenclinic.com/",
         "telephone": "+91-90425-80801",
         "email": "rishichildrenclinic@gmail.com",
@@ -100,7 +99,7 @@
             {
                 "@type": "Physician",
                 "name": "Dr. Aishwarya V",
-                "jobTitle": "Consultant Pediatrician & Neonatologist",
+                "jobTitle": "Consultant Pediatrician and Neonatologist",
                 "description": "MBBS, MD (Peds), PGPN (Boston). Medical Registration No. 158252.",
                 "medicalSpecialty": "Pediatric"
             }
@@ -108,21 +107,53 @@
     }
     </script>
 
+    <!-- Self-hosted font (no third-party round trips) -->
+    <link rel="preload" href="assets/fonts/quicksand-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- LCP image on the home tab -->
+    <link rel="preload" as="image" href="assets/home-hero-640.webp" imagesrcset="assets/home-hero-640.webp 640w, assets/home-hero.webp 900w"
+        imagesizes="(min-width: 768px) 448px, 90vw" fetchpriority="high">
+
     <!-- Compiled Tailwind CSS (built from tailwind.config.js -> styles.css) -->
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
+        @font-face {
+            font-family: 'Quicksand';
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: swap;
+            src: url('assets/fonts/quicksand-latin-wght-normal.woff2') format('woff2');
+        }
+
+        .icon {
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+            display: inline-block;
+            vertical-align: -0.125em;
+            flex-shrink: 0;
+        }
+
+        /* Darker text shades for WCAG AA contrast (decorative icon backgrounds unchanged) */
+        p.text-brand-textSoft, span.text-brand-textSoft, label.text-brand-textSoft { color: #6B5978; }
+        span.text-brand-blueDeep, h4.text-brand-blueDeep { color: #3F7BA8; }
+        span.text-brand-blush, h4.text-brand-blush, button.text-brand-blush { color: #C2457F; }
+        span.text-brand-lavenderDeep, h4.text-brand-lavenderDeep, p.text-brand-lavenderDeep { color: #7B54B3; }
+        footer .text-white\/60, footer .text-white\/50, footer .text-white\/70 { color: rgba(255,255,255,.85); }
+        footer a { display: inline-block; padding: 4px 0; }
+
+        /* Mobile performance: avoid blur repaints while scrolling */
+        @media (max-width: 767px) {
+            header.sticky { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(255,255,255,.95); }
+            #appointment { -webkit-backdrop-filter: none; backdrop-filter: none; }
+        }
+        .nav-btn { min-height: 44px; }
+
         body {
             background: linear-gradient(160deg, #FDE2ED 0%, #F3E4F8 45%, #DCEBFA 100%);
-            background-attachment: fixed;
+            background-attachment: scroll;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
         }
 
         /* Smooth blended fade + rise transition for SPA section switches */
@@ -190,7 +221,7 @@
         </div>
 
         <!-- Centered Navbar -->
-        <nav class="flex flex-wrap items-center justify-center gap-1 sm:gap-2 md:gap-4 px-2 pb-4">
+        <nav class="flex flex-wrap items-center justify-center gap-1 sm:gap-2 md:gap-4 px-2 pb-3">
             <button data-target="home"
                 class="nav-btn active-nav px-3 sm:px-5 py-2 rounded-full font-semibold text-sm md:text-base transition-all">
                 Home
@@ -215,11 +246,11 @@
     <!-- ========================================== -->
     <button id="prevArrow" aria-label="Previous section"
         class="side-arrow hidden sm:flex fixed left-3 md:left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/80 text-brand-lavenderDeep shadow-md items-center justify-center text-xl hover:text-white">
-        <i class="fa-solid fa-chevron-left"></i>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-left"/></svg>
     </button>
     <button id="nextArrow" aria-label="Next section"
         class="side-arrow hidden sm:flex fixed right-3 md:right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-12 md:h-12 rounded-full bg-white/80 text-brand-lavenderDeep shadow-md items-center justify-center text-xl hover:text-white">
-        <i class="fa-solid fa-chevron-right"></i>
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-right"/></svg>
     </button>
 
     <!-- ========================================== -->
@@ -244,7 +275,8 @@
                             first checkup together to every little milestone after.</p>
                     </div>
                     <div class="md:w-5/12 mt-8 md:mt-0 flex justify-center">
-                        <img src="assets/home-hero.webp" width="900" height="600"
+                        <img src="assets/home-hero-640.webp" srcset="assets/home-hero-640.webp 640w, assets/home-hero.webp 900w"
+                            sizes="(min-width: 768px) 448px, 90vw" width="900" height="600"
                             alt="Happy parents hugging their smiling child - Rishi Children Clinic, Madipakkam"
                             class="w-full max-w-md rounded-3xl mix-blend-multiply" loading="eager" fetchpriority="high">
                     </div>
@@ -264,7 +296,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-babypink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-baby"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-baby"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Neonatal & Infant Care</h3>
                         <p class="text-brand-textSoft text-sm">Newborn wellness checkups, growth monitoring, and
@@ -274,7 +306,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-blue text-brand-blueDeep rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-syringe"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-syringe"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Vaccinations</h3>
                         <p class="text-brand-textSoft text-sm">Complete immunization programs following safe pediatric
@@ -284,7 +316,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-lavender text-brand-lavenderDeep rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-user-nurse"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-user-nurse"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Urgent Sick Visits</h3>
                         <p class="text-brand-textSoft text-sm">Same-day appointments for fevers, coughs, and minor
@@ -294,7 +326,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-pink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-chart-line"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chart-line"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Growth & Nutrition</h3>
                         <p class="text-brand-textSoft text-sm">Weight, height &amp; BMI tracking against WHO/IAP
@@ -304,7 +336,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-blueDeep/30 text-brand-blueDeep rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-puzzle-piece"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-puzzle-piece"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Developmental Screening</h3>
                         <p class="text-brand-textSoft text-sm">Assessment of gross &amp; fine motor skills and speech
@@ -314,7 +346,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-babypink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-lungs"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lungs"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Respiratory & Asthma Care</h3>
                         <p class="text-brand-textSoft text-sm">Diagnosis and management of asthma, wheezing, allergies,
@@ -324,7 +356,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-blue text-brand-blueDeep rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-notes-medical"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-notes-medical"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Pediatric Gastroenterology & Liver Care</h3>
                         <p class="text-brand-textSoft text-sm">Specialized care for digestive, liver, and nutrition
@@ -334,7 +366,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-lavender text-brand-lavenderDeep rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-person-half-dress"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-person-half-dress"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Adolescent Care</h3>
                         <p class="text-brand-textSoft text-sm">Guidance through puberty, growth, and the physical
@@ -344,7 +376,7 @@
                         class="bg-white/80 p-6 rounded-2xl shadow-md border border-white hover:shadow-xl transition-all">
                         <div
                             class="w-12 h-12 bg-brand-pink text-brand-blush rounded-xl flex items-center justify-center text-2xl mb-4">
-                            <i class="fa-solid fa-hand-holding-heart"></i>
+                            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-hand-holding-heart"/></svg>
                         </div>
                         <h3 class="text-lg font-bold mb-2">Mother's Care</h3>
                         <p class="text-brand-textSoft text-sm">Guidance and education for mothers, including
@@ -444,7 +476,7 @@
 
                         <div
                             class="max-w-xl mx-auto mt-6 bg-brand-babypink/60 border border-brand-pink rounded-2xl p-4 text-sm text-brand-text text-center">
-                            <i class="fa-solid fa-circle-info mr-1 text-brand-blush"></i>
+                            <svg class="icon mr-1 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-circle-info"/></svg>
                             This tool gives a general reference only and is not a medical diagnosis. Every child
                             grows differently — for a proper interpretation of these numbers, please
                             <button id="gcBookAppt" type="button"
@@ -514,25 +546,25 @@
                     <div id="devResults" class="hidden mt-6 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <div class="bg-brand-babypink/30 rounded-2xl p-4">
                             <h4 class="text-sm font-bold text-brand-blueDeep uppercase tracking-wide mb-3">
-                                <i class="fa-solid fa-person-walking mr-1"></i> Gross Motor
+                                <svg class="icon mr-1" aria-hidden="true"><use href="assets/icons.svg#i-person-walking"/></svg> Gross Motor
                             </h4>
                             <div id="devGrossMotorList" class="grid grid-cols-2 gap-4"></div>
                         </div>
                         <div class="bg-brand-babypink/30 rounded-2xl p-4">
                             <h4 class="text-sm font-bold text-brand-blush uppercase tracking-wide mb-3">
-                                <i class="fa-solid fa-hand mr-1"></i> Fine Motor
+                                <svg class="icon mr-1" aria-hidden="true"><use href="assets/icons.svg#i-hand"/></svg> Fine Motor
                             </h4>
                             <div id="devFineMotorList" class="grid grid-cols-2 gap-4"></div>
                         </div>
                         <div class="bg-brand-babypink/30 rounded-2xl p-4">
                             <h4 class="text-sm font-bold text-brand-lavenderDeep uppercase tracking-wide mb-3">
-                                <i class="fa-solid fa-people-group mr-1"></i> Social &amp; Adaptive
+                                <svg class="icon mr-1" aria-hidden="true"><use href="assets/icons.svg#i-people-group"/></svg> Social &amp; Adaptive
                             </h4>
                             <div id="devSocialList" class="grid grid-cols-2 gap-4"></div>
                         </div>
                         <div class="bg-brand-babypink/30 rounded-2xl p-4">
                             <h4 class="text-sm font-bold text-brand-blueDeep uppercase tracking-wide mb-3">
-                                <i class="fa-solid fa-comments mr-1"></i> Language
+                                <svg class="icon mr-1" aria-hidden="true"><use href="assets/icons.svg#i-comments"/></svg> Language
                             </h4>
                             <div id="devLanguageList" class="grid grid-cols-2 gap-4"></div>
                         </div>
@@ -563,7 +595,7 @@
                 <div class="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all">
                     <div
                         class="w-36 h-36 rounded-full mx-auto mb-4 border-4 border-white shadow overflow-hidden bg-brand-babypink">
-                        <img src="assets/doctors/dr-aishwarya.webp" width="400" height="608" loading="lazy"
+                        <img src="assets/doctors/dr-aishwarya-288.webp" width="288" height="438" loading="lazy" decoding="async"
                             alt="Dr. Aishwarya V - Consultant Pediatrician &amp; Neonatologist, Madipakkam"
                             class="w-full h-full object-cover object-[50%_22%]">
                     </div>
@@ -573,20 +605,7 @@
                     <p class="text-brand-textSoft text-xs">MBBS, MD (Peds), PGPN (Boston)</p>
                     <p class="text-brand-textSoft text-[11px] mt-1">Reg. No. 158252</p>
                 </div>
-                <!-- Doctor Card 1 -->
-                <!--<div class="bg-white rounded-2xl p-6 shadow-md text-center hover:shadow-xl transition-all">
-                    <div
-                        class="img-placeholder w-28 h-28 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-brand-textSoft border-4 border-white shadow overflow-hidden">
-                        <img src="https://ispghan.org/wp-content/uploads/2026/01/rajkali.jpg"
-                            alt="Dr. Rajkali R - Consultant Pediatrician, Madipakkam" class="w-full h-full object-cover"
-                            onerror="this.replaceWith(Object.assign(document.createElement('i'), {className:'fa-solid fa-user-doctor'}))">
-                    </div>
-                    <h3 class="text-xl font-bold text-brand-text">Dr. Rajkali R</h3>
-                    <p class="text-brand-blush text-sm font-semibold mb-1">Consultant Pediatrician &ndash; Ped Gastro,
-                        Liver &amp; Nutrition</p>
-                    <p class="text-brand-textSoft text-xs">MBBS, MD (Peds) (AIIMS), FISPGHAN, IPPN</p>
-                    <p class="text-brand-textSoft text-[11px] mt-1">Reg. No. 134847</p>
-                </div>-->
+                <!-- Doctor Card 1 (Dr. Rajkali R): add back when a local photo is available -->
 
             </div>
 
@@ -612,7 +631,7 @@
             <!-- Working Hours -->
             <div class="max-w-md mx-auto mt-8 bg-white/80 rounded-2xl shadow-md border border-white p-5 text-center">
                 <p class="text-xs font-bold uppercase tracking-widest text-brand-lavenderDeep mb-2">
-                    <i class="fa-regular fa-clock mr-1"></i> Working Hours
+                    <svg class="icon mr-1" aria-hidden="true"><use href="assets/icons.svg#i-clock"/></svg> Working Hours
                 </p>
                 <p class="text-sm text-brand-text"><span class="font-semibold">Mon &ndash; Sat:</span> 5:30 PM &ndash;
                     9:30 PM</p>
@@ -635,7 +654,7 @@
                 <p class="text-white/70 text-xs mb-4">Trusted pediatric care for your child in Madipakkam,
                     Chennai — caring for growing families with warmth and expertise.</p>
                 <address class="not-italic text-white/80 text-xs leading-relaxed">
-                    <i class="fa-solid fa-location-dot mr-2 text-brand-blush"></i>
+                    <svg class="icon mr-2 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-location-dot"/></svg>
                     <span>13B, 13th St, Ayyappan Nagar</span>,
                     <span>Madipakkam</span>,
                     <span>Chennai, Tamil Nadu</span>
@@ -647,22 +666,22 @@
             <div>
                 <h3 class="text-white font-bold text-lg mb-3">Contact &amp; Hours</h3>
                 <p class="text-white/80 text-xs mb-2">
-                    <i class="fa-solid fa-phone mr-2 text-brand-blush"></i>
+                    <svg class="icon mr-2 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-phone"/></svg>
                     <a href="tel:+919042580801"
                         class="hover:text-brand-blush transition-colors">+91
                         90425 80801</a>
                 </p>
                 <p class="text-white/80 text-xs mb-2">
-                    <i class="fa-solid fa-envelope mr-2 text-brand-blush"></i>
+                    <svg class="icon mr-2 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-envelope"/></svg>
                     <a href="mailto:rishichildrenclinic@gmail.com"
                         class="hover:text-brand-blush transition-colors">rishichildrenclinic@gmail.com</a>
                 </p>
                 <p class="text-white/80 text-xs mb-3">
-                    <i class="fa-brands fa-instagram mr-2 text-brand-blush"></i>
+                    <svg class="icon mr-2 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-instagram"/></svg>
                     <a href="https://www.instagram.com/rishi_children_clinic/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-blush transition-colors">@rishi_children_clinic</a>
                 </p>
                 <p class="text-white/70 text-xs">
-                    <i class="fa-regular fa-clock mr-2 text-brand-blush"></i>
+                    <svg class="icon mr-2 text-brand-blush" aria-hidden="true"><use href="assets/icons.svg#i-clock"/></svg>
                     Mon &ndash; Sat: 5:30 PM &ndash; 9:30 PM
                 </p>
                 <p class="text-white/70 text-xs pl-5">Sunday: 10:30 AM &ndash; 12:00 PM</p>
@@ -688,7 +707,6 @@
     </footer>
 
     <!-- JS Logic Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" defer></script>
     <script src="script.js" defer></script>
     <script src="growth-calculator.js" defer></script>
     <script src="vaccination.js" defer></script>

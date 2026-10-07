@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let scheduleData = null;
 
     fetch('data/vaccinations.json')
-        .then(res => res.json())
+        .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
         .then(data => {
             scheduleData = data;
             data.schedule.forEach(entry => {
@@ -33,7 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.vaccines.forEach(v => {
             const li = document.createElement('li');
             li.className = 'bg-white rounded-xl px-4 py-2.5 shadow-sm border border-brand-lavender/40 flex items-center gap-3 text-sm text-brand-text';
-            li.innerHTML = `<i class="fa-solid fa-syringe text-brand-blueDeep"></i><span>${v}</span>`;
+            const NS = 'http://www.w3.org/2000/svg';
+            const svg = document.createElementNS(NS, 'svg');
+            svg.setAttribute('class', 'icon text-brand-blueDeep');
+            svg.setAttribute('aria-hidden', 'true');
+            const use = document.createElementNS(NS, 'use');
+            use.setAttribute('href', 'assets/icons.svg#i-syringe');
+            svg.appendChild(use);
+            const label = document.createElement('span');
+            label.textContent = v;
+            li.append(svg, label);
             list.appendChild(li);
         });
         resultsBox.classList.remove('hidden');

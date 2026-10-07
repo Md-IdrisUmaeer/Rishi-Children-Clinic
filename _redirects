@@ -1,0 +1,4 @@
+# AFTER www.rishichildrenclinic.com is live, uncomment this so the *.netlify.app URL
+# 301-redirects to the real domain (avoids duplicate-content indexing):
+# https://rishi-children-clinic.netlify.app/*  https://www.rishichildrenclinic.com/:splat  301!
+# https://rishichildrenclinic.com/*             https://www.rishichildrenclinic.com/:splat  301!

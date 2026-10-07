@@ -314,6 +314,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return { labels, datasets, xLabel: 'Age (years)' };
     }
 
+    // Chart.js (~200 KB) is only fetched the first time a chart is needed
+    let chartLoader = null;
+    function loadChartJs() {
+        if (window.Chart) return Promise.resolve();
+        if (!chartLoader) {
+            chartLoader = new Promise((resolve, reject) => {
+                const el = document.createElement('script');
+                el.src = 'assets/vendor/chart.umd.min.js';
+                el.onload = resolve;
+                el.onerror = () => { chartLoader = null; reject(new Error('Chart.js failed to load')); };
+                document.head.appendChild(el);
+            });
+        }
+        return chartLoader;
+    }
+    // Warm the cache when the Growth tab is opened, so the first chart renders instantly
+    document.querySelector('[data-target="growth"]')?.addEventListener('click', () => {
+        (window.requestIdleCallback || setTimeout)(() => loadChartJs().catch(() => {}));
+    }, { once: true });
+
     function renderChart(metric) {
         if (!lastResults) return;
         const r = lastResults[metric];
@@ -354,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('growthChart').parentElement.style.height = '420px';
     }
 
-    metricSelect.addEventListener('change', () => renderChart(metricSelect.value));
+    metricSelect.addEventListener('change', () => loadChartJs().then(() => renderChart(metricSelect.value)).catch(err => console.error('Growth chart render failed:', err)));
 
     if (bookApptBtn) {
         bookApptBtn.addEventListener('click', () => {
@@ -435,6 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Chart rendering is best-effort — a Chart.js/canvas hiccup shouldn't hide
             // percentile results that were already computed successfully above.
             try {
+                await loadChartJs();
                 renderChart('weight');
             } catch (chartErr) {
                 console.error('Growth chart render failed:', chartErr);
@@ -442,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (err) {
             console.error('Growth percentile calculation failed:', err);
             if (window.location.protocol === 'file:') {
-                errorEl.textContent = 'This page was opened directly as a file, so the browser blocks it from loading the growth chart data (data/*.json). Serve the site over http(s) — e.g. run "npx serve" in the project folder, or view the deployed Vercel site — then try again.';
+                errorEl.textContent = 'This page was opened directly as a file, so the browser blocks it from loading the growth chart data (data/*.json). Serve the site over http(s) — e.g. run "npx serve" in the project folder, or view the deployed site — then try again.';
             } else {
                 errorEl.textContent = 'Could not load growth chart data (data/*.json). Please check your connection and try again.';
             }
