@@ -15,7 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookApptBtn = document.getElementById('gcBookAppt');
 
     // Default measurement date = today; nobody can pick a future date/DOB
-    const todayStr = new Date().toISOString().split('T')[0];
+    // Build today's date from the LOCAL clock (toISOString() is UTC, which is still
+    // "yesterday" in India between midnight and 5:30 AM)
+    const now = new Date();
+    const todayStr = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
     dateInput.value = todayStr;
     dateInput.max = todayStr;
     dobInput.max = todayStr;
